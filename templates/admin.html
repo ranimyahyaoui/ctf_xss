@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Purple Admin - Control Panel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --purple-grad: linear-gradient(to right, #da8cff, #9a55ff);
+            --blue-grad: linear-gradient(to right, #32e2ff, #3294ff);
+            --red-grad: linear-gradient(to right, #ffbf96, #fe7096);
+            --bg: #f2edf3;
+            --text: #3e4b5b;
+        }
+
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; color: var(--text); }
+
+        .sidebar { width: 260px; background: white; height: 100vh; position: fixed; box-shadow: 2px 0 10px rgba(0,0,0,0.05); }
+        .logo { padding: 30px; font-size: 24px; color: #b66dff; font-weight: bold; }
+
+        .nav-menu { list-style: none; padding: 0; }
+        .nav-item {
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            border-left: 4px solid transparent;
+        }
+        .nav-item i { margin-right: 15px; color: #b66dff; }
+        .nav-item.active { background: #f9f9f9; border-left: 4px solid #b66dff; font-weight: bold; }
+
+        .main { margin-left: 260px; flex: 1; padding: 40px; }
+
+        .header h2 { display: flex; align-items: center; gap: 10px; }
+        .header h2 i { background: var(--purple-grad); color: white; padding: 10px; border-radius: 5px; }
+
+        .card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 25px; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .stat-card { padding: 30px; border-radius: 10px; color: white; position: relative; }
+        .stat-card i { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 40px; opacity: 0.3; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+
+        .badge { padding: 5px 10px; border-radius: 4px; font-size: 12px; color: white; }
+        .bg-success { background: #1bcfb4; }
+
+        .btn-purple { background: var(--purple-grad); border: none; color: white; padding: 12px 25px; border-radius: 5px; cursor: pointer; }
+
+        .input-group { display: flex; gap: 10px; margin-top: 20px; }
+        .form-control { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 5px; }
+
+        .terminal { background: #1e1e1e; color: #4af626; padding: 20px; border-radius: 8px; margin-top: 20px; font-family: monospace; white-space: pre-wrap; }
+
+        .denied { position: fixed; top:0; left:0; width:100%; height:100%; background:#0a1425; display:flex; justify-content:center; align-items:center; color:white; z-index:9999; }
+    </style>
+</head>
+
+<body>
+
+{% if access_denied %}
+<div class="denied">
+    <div>
+        <h1 style="font-size:100px;color:#fe7096;">403</h1>
+        <h2>ACCÈS REFUSÉ</h2>
+        <p>Session admin invalide</p>
+    </div>
+</div>
+{% endif %}
+
+<div class="sidebar">
+    <div class="logo">Purple</div>
+
+    <ul class="nav-menu">
+        <a href="/admin?tab=dashboard" class="nav-item {{ 'active' if active_tab == 'dashboard' }}"><i class="fas fa-home"></i>Dashboard</a>
+        <a href="/admin?tab=servers" class="nav-item {{ 'active' if active_tab == 'servers' }}"><i class="fas fa-server"></i>Serveurs</a>
+        <a href="/admin?tab=users" class="nav-item {{ 'active' if active_tab == 'users' }}"><i class="fas fa-users"></i>Utilisateurs</a>
+        <a href="/admin?tab=messages" class="nav-item {{ 'active' if active_tab == 'messages' }}"><i class="fas fa-envelope"></i>Messages</a>
+        <a href="/admin?tab=logs" class="nav-item {{ 'active' if active_tab == 'logs' }}"><i class="fas fa-file-alt"></i>Logs</a>
+        <a href="/admin?tab=security" class="nav-item {{ 'active' if active_tab == 'security' }}"><i class="fas fa-shield-virus"></i>Sécurité</a>
+        <a href="/admin?tab=maintenance" class="nav-item {{ 'active' if active_tab == 'maintenance' }}"><i class="fas fa-terminal"></i>Maintenance</a>
+    </ul>
+</div>
+
+<div class="main">
+
+{% if active_tab == 'dashboard' %}
+<div class="header"><h2><i class="fas fa-home"></i>Dashboard</h2></div>
+<div class="stats-grid">
+    <div class="stat-card" style="background:var(--purple-grad);"><h4>Revenus</h4><h2>$15,000</h2></div>
+    <div class="stat-card" style="background:var(--blue-grad);"><h4>API Calls</h4><h2>45,633</h2></div>
+    <div class="stat-card" style="background:var(--red-grad);"><h4>Alertes</h4><h2>0</h2></div>
+</div>
+{% endif %}
+
+{% if active_tab == 'servers' %}
+<div class="header"><h2><i class="fas fa-server"></i>Serveurs</h2></div>
+<div class="card">
+<table>
+<tr><th>Nom</th><th>IP</th><th>Status</th></tr>
+<tr><td>Frontend</td><td>172.16.0.10</td><td><span class="badge bg-success">Online</span></td></tr>
+<tr><td>DB</td><td>172.16.0.20</td><td><span class="badge bg-success">Online</span></td></tr>
+</table>
+</div>
+{% endif %}
+
+{% if active_tab == 'users' %}
+<div class="header"><h2><i class="fas fa-users"></i>Utilisateurs</h2></div>
+<div class="card">
+<table>
+<tr><th>Nom</th><th>Email</th><th>Rôle</th></tr>
+<tr><td>admin</td><td>admin@corp.local</td><td>Admin</td></tr>
+<tr><td>guest</td><td>guest@corp.local</td><td>User</td></tr>
+</table>
+</div>
+{% endif %}
+
+{% if active_tab == 'messages' %}
+<div class="header"><h2><i class="fas fa-envelope"></i>Messages</h2></div>
+<div class="card">
+{% for m in messages %}
+<div><strong>{{ m.name }}</strong> : {{ m.message }}</div>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if active_tab == 'logs' %}
+<div class="header"><h2><i class="fas fa-file-alt"></i>Logs</h2></div>
+<div class="card">
+<div class="terminal">
+
+[INFO] Server started  
+[INFO] Admin bot triggered  
+[INFO] DNS Query: auth.internal.local  
+[WARN] Suspicious DNS request detected  
+[DEBUG] Possible data exfiltration via subdomain  
+
+{% for log in logs %}
+{{ log }}
+{% endfor %}
+
+</div>
+</div>
+{% endif %}
+{% if active_tab == 'security' %}
+<div class="header"><h2><i class="fas fa-shield-virus"></i>Sécurité & Forensics</h2></div>
+<div class="stats-grid">
+    <div class="stat-card" style="background:var(--red-grad);"><h4>XSS détectés</h4><h2>{{ messages|length }}</h2></div>
+    <div class="stat-card" style="background:var(--blue-grad);"><h4>Sessions</h4><h2>3</h2></div>
+    <div class="stat-card" style="background:var(--purple-grad);"><h4>Firewall</h4><h2>Actif</h2></div>
+</div>
+
+<div class="card" style="margin-top: 25px;">
+    <h3>Investigation Réseau (Forensics)</h3>
+    <p style="color: #6b7994; font-size: 14px;">
+        "Le pare-feu a enregistré une attaque par déni de service (Ping Flood). Les logs indiquent que l'attaquant a tenté d'utiliser l'outil de diagnostic réseau pour envoyer des paquets ICMP malformés. Nous suspectons que l'IDS a bloqué les séparateurs de commandes classiques, forçant l'attaquant à utiliser des techniques d'évasion plus discrètes."
+    </p>
+    <a href="/admin/download/pcap" class="btn-purple" style="text-decoration: none; display: inline-block; margin-top: 10px;">
+        <i class="fas fa-download"></i> Télécharger capture.pcap
+    </a>
+</div>
+{% endif %}
+{% if active_tab == 'maintenance' %}
+<div class="header"><h2><i class="fas fa-terminal"></i>Maintenance</h2></div>
+
+<div class="card">
+    <p style="color: #6b7994; font-size: 14px; margin-bottom: 20px;">
+        <i class="fas fa-lock" style="color: #fe7096;"></i> 
+        Mode maintenance sécurisé. Veuillez entrer le code PIN d'autorisation envoyé sur le réseau de gestion pour utiliser l'outil de diagnostic.
+    </p>
+    
+    <form method="POST">
+        <div class="input-group">
+            <input name="pin" type="password" class="form-control" placeholder="Code PIN " required style="max-width: 200px; border-color: #fe7096;">
+            <input name="host" class="form-control" placeholder="Adresse IP à ping (ex: 127.0.0.1)" required>
+            <button class="btn-purple">Ping</button>
+        </div>
+    </form>
+
+{% if result %}
+    <div class="terminal">{{ result }}</div>
+    {% endif %}
+</div>
+{% endif %} </div> </body>
+</html>

@@ -1,0 +1,32 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: xss_lab_app
+    ports: 
+      - "5000:5000"
+    restart: unless-stopped
+    networks:
+      xss_net:
+        ipv4_address: 172.16.238.10
+
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile.bot
+    container_name: xss_lab_bot
+    depends_on:
+      - app
+    environment:
+      - APP_URL=http://172.16.238.10:5000/admin/messages
+    restart: unless-stopped
+    networks:
+      - xss_net
+
+networks:
+  xss_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.238.0/24  

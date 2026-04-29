@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NioLand - Solutions to Capture Ideas</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+*{
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+}
+
+body{
+
+    background-color: #e6efff;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+/* header styles*/
+
+
+
+header{
+
+
+
+    margin: 0px 60px;
+
+}
+/* Indicateur de statut du bot */
+.admin-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #6b7994;
+    margin-bottom: 15px;
+    background: #f0f4ff;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.status-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+}
+
+
+.navbar{
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.nav{
+
+    list-style-type: none;
+
+   
+
+}
+
+.nav-item{
+
+    float: left;
+
+    margin: 30px;
+
+    color: #0a1425;
+
+    font-weight: 600;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+}
+
+.nav-item:hover{
+
+    color: #34435e;
+
+    text-decoration: underline;
+
+
+
+}
+
+.purchase{
+
+    background-color: transparent;
+
+    color: #0a1425;
+
+    width: 200px;
+
+    height: 50px;
+
+    border: 2px solid #0a1425;
+
+    border-radius: 12px;
+
+    font-size: 1rem;
+
+    font-weight: 700;
+
+    transition: 0,3s;
+
+}
+
+.purchase:hover{
+
+    background-color: #3f78e0;
+
+    color: white;
+
+    border: 2px solid white;
+
+   
+
+}
+
+/*hero section*/
+
+.hero{
+
+    margin: 50px 60px;
+
+    padding-bottom: 60px;
+
+    display: grid;
+
+    grid-template-columns: auto auto;
+
+}
+
+.hero-text>h1{
+
+    font-size: 60px;
+
+    color: #0a1425;
+
+    font-weight: 700;
+
+}
+
+.hero-text>p{
+
+
+
+    color: #6b7994;
+
+    font-size: 21px;
+
+    letter-spacing: 1px;
+
+    font-weight: 400;
+
+}
+
+.hero-actions{
+
+    margin-top: 32px;
+
+}
+
+.btn-blue{
+
+    width: 160px;
+
+    height: 50px;
+
+    background-color: #3f78e0;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    margin-right: 12px;
+
+    transition: 0,3s;
+
+
+
+}
+
+.btn-blue:hover{
+
+    background-color: #80a8f2;
+
+}
+
+.btn-outline-blue{
+
+    width: 160px;
+
+    height: 50px;
+
+    background-color: transparent;
+
+    color: #3f78e0;
+
+    border: 29x solid #3f78e0;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition: 0,3s;
+
+}
+
+.btn-outline-blue:hover{
+
+    background-color: #3f78e0;
+
+    color: white;
+
+}
+
+.hero-image{
+
+    margin-top: 24px;
+
+}
+
+/*features style*/
+
+.features{
+
+    background-color: white;
+
+    padding: 50px 60px;
+
+    text-align: center;
+
+}
+
+.features-top{
+
+    text-align: center;
+
+}
+
+.section-title{
+
+    color: #0a1425;
+
+    font-size: 50px;
+
+
+
+}
+
+.section-description{
+
+    color: #6b7994;
+
+    font-size: 20px;
+
+    font-weight: 400;
+
+    letter-spacing: 1px;
+
+    line-height: 32px;
+
+}
+
+.features-list{
+
+    margin-top: 48px;
+
+    display: grid;
+
+    grid-template-columns: 33% 33% 33%;
+
+}
+
+.features-item{
+
+    padding: 12px;
+
+}
+
+.features-item>a{
+
+    color: #3f78e0;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}
+
+/*business section*/
+
+.business{
+
+    background-color: white;
+
+    padding: 50px 60px;
+
+}
+
+.features-top{
+
+    text-align: center;
+
+}
+
+.grow{
+
+    margin-top: 100px;
+
+    display: grid;
+
+    grid-template-columns: 50% 50%;
+
+}
+
+.grow-text{
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: start;
+
+
+
+}
+
+.nbr-one{
+
+    background-color: #e8effb;
+
+    padding: 24px 32px;
+
+    border-radius: 50%;
+
+    color: #3f78e0;
+
+    font-weight: 700;
+
+    font-size: 24px;
+
+}
+
+.nbr-two{
+
+    background-color: #fff6e5;
+
+    padding: 24px 32px;
+
+    border-radius: 50%;
+
+    color: #fdb52a;
+
+    font-weight: 700;
+
+    font-size: 24px;
+
+}
+
+.nbr-three{
+
+    background-color: #feebed;
+
+    padding: 24px 32px;
+
+    border-radius: 50%;
+
+    color: #fa5b68;
+
+    font-weight: 700;
+
+    font-size: 24px;
+
+}
+
+.grow-text>h2{
+
+    color: #0a1425;
+
+    font-size: 40px;
+
+    margin-top: 32px;
+
+
+
+}
+
+.text-blue{
+
+    color: #3f78e0;
+
+}
+
+.text-orange{
+
+    color: #fdb52a;
+
+}
+
+.text-red{
+
+    color: #fa5b68;
+
+}
+
+.btn-outline-orange{
+
+    width: 160px;
+
+    height: 50px;
+
+    background-color: transparent;
+
+    color: #fdb52a;
+
+    border: 29x solid #fdb52a;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition: 0,3s;
+
+}
+
+.btn-outline-orange:hover{
+
+    background-color: #fdb52a;
+
+    color: white;
+
+}
+
+.btn-outline-red{
+
+    width: 160px;
+
+    height: 50px;
+
+    background-color: transparent;
+
+    color: #fa5b68;
+
+    border: 29x solid #fa5b68;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    transition: 0,3s;
+
+}
+
+.btn-outline-red:hover{
+
+    background-color: #fa5b68;
+
+    color: white;
+
+}
+
+.grow-image{
+
+    text-align: center;
+
+    margin-top: 24px;
+
+}
+
+/*pricing-table*/
+
+.pricing{
+
+    padding: 50px 60px;
+
+}
+
+.pricing-table{
+
+    background-color: white;
+
+    padding: 24px;
+
+    border-radius: 24px;
+
+    margin-top: 32px;
+
+}
+
+thead{
+
+    font-size: 34px;
+
+    text-align: center;
+
+}
+
+.table-pack>td{
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+}
+
+td{
+
+    padding: 16px;
+
+}
+
+/*Discount-section*/
+
+.discount{
+
+    padding: 50px 60px;
+
+    display: grid;
+
+    grid-template-columns: 50% 50%;
+
+}
+
+.discount-content{
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+input{
+
+    padding: 16px;
+
+    margin-right: 12px;
+
+    border-radius: 12px;
+
+    border: 0,5 solid gray;
+
+    width: 200px;
+
+}
+
+.links{
+
+    margin-top: 48px;
+
+}
+
+.links>a>img{
+
+    border-radius: 12px;
+
+    margin-right: 12px;
+
+}
+
+.discount-image{
+
+    text-align: center;
+
+}
+
+/*footer-section*/
+
+footer{
+
+    padding: 50px 60px;
+
+    background-color: white;
+
+}
+
+.footer-grid{
+
+    display: grid;
+
+    grid-template-columns: 40% 20% 20% 20%;
+
+}
+
+.pages{
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.pages>a{
+
+    font-size: 16px;
+
+    color: #6b7994;
+
+    text-decoration: none;
+
+    margin-top: 12px;
+
+}
+
+.footer-copy{
+
+    text-align: center;
+
+    margin-top: 60px;
+
+}
+
+
+
+/* Nav buttons */
+
+.nav-buttons {
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+
+
+.btn-login {
+
+    padding: 12px 24px;
+
+    background-color: transparent;
+
+    color: #0a1425;
+
+    border: 2px solid #0a1425;
+
+    border-radius: 12px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+
+.btn-login:hover {
+
+    background-color: #3f78e0;
+
+    color: white;
+
+    border-color: #3f78e0;
+
+}
+
+
+
+.btn-register {
+
+    padding: 12px 24px;
+
+    background-color: #3f78e0;
+
+    color: white;
+
+    border: 2px solid #3f78e0;
+
+    border-radius: 12px;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+
+.btn-register:hover {
+
+    background-color: #2d5cb8;
+
+    border-color: #2d5cb8;
+
+}
+
+
+
+/* Modal styles */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 1000;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+
+
+.modal-content {
+
+    background-color: white;
+
+    margin: 5% auto;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    width: 90%;
+
+    max-width: 500px;
+
+    position: relative;
+
+}
+
+
+
+.close-btn {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 15px;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #aaa;
+
+    cursor: pointer;
+
+}
+
+
+
+.close-btn:hover {
+
+    color: #000;
+
+}
+
+
+
+.help-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+
+
+.help-form input,
+
+.help-form select,
+
+.help-form textarea {
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+}
+
+
+
+.help-form textarea {
+
+    resize: vertical;
+
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+}
+</style>
+
+<body>
+
+    <!--Header section-->
+
+    <header>
+
+        <div class="navbar">
+
+            <img src="{{ url_for('static', filename='../static/images/logo.png') }}" alt="">
+
+            <ul class="nav">
+
+                <li class="nav-item"><a href="/">Home</a></li>
+
+                <li class="nav-item"><a href="#features">Features</a></li>
+
+                <li class="nav-item"><a href="#business">Business</a></li>
+
+                <li class="nav-item"><a href="#pricing">Pricing</a></li>
+
+                <li class="nav-item"><a href="#contact">Get started</a></li>
+
+            </ul>
+
+            <div class="nav-buttons">
+
+                <button class="btn-login" onclick="window.location.href='/login'">Login</button>
+
+                <button class="btn-register" onclick="window.location.href='/register'">Register</button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <!--header section-->
+
+
+
+    <!--hero section-->
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <h1>NioLand Brings <br>
+
+                Solutions to Captures <br>
+
+                Ideas</h1>
+
+            <p>Easily achieve your saving goals.Have all your recurring and one time <br>
+
+                 expenses and incomes in one place.</p>
+
+            <div class="hero-actions">
+
+                <button class="btn-blue"> Try free demo</button>
+
+                <button class="btn-outline-blue">Explore now</button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <img src="{{ url_for('static', filename='../static/images/banner-cover.png') }}" alt="">
+
+        </div>
+
+    </section>
+
+    <!--hero section-->
+
+
+
+    <!--Features section-->
+
+    <section class="features" id="features">
+
+        <div class="features-top">
+
+            <h1 class="section-title">Discover Powerful Features</h1>
+
+            <p class="section-description">Unleash the power of our plateform's features for streamlined <br>
+
+                processes ,enhanced productivity ,and goal achievement.</p>
+
+            <div class="hero-actions">
+
+                <button class="btn-blue"> Try free demo</button>
+
+                <button class="btn-outline-blue">Explore now</button>
+
+            </div>
+
+        </div>
+
+        <div class="features-list">
+
+            <div class="features-item">
+
+                <img src="{{ url_for('static', filename='../static/images/section-cover-1.png') }}" alt="">
+
+                <h2>Custom Analytics</h2>
+
+                <p>Get a complete sales dashboard in the cloudSee activity,<br>
+
+                    revenue and social metrics all in one place.</p>
+
+                <a href="">Learn more>></a>
+
+            </div>
+
+            <div class="features-item">
+
+                <img src="{{ url_for('static', filename='../static/images/section-cover-1-a.png') }}" alt="">
+
+                <h2>Team Management</h2>
+
+                <p>Get a complete sales dashboard in the cloudSee activity,<br>
+
+                   revenue and social metrics all in one place.</p>
+
+                <a href="">Learn more>></a>
+
+            </div>
+
+            <div class="features-item">
+
+                <img src="{{ url_for('static', filename='../static/images/section-cover-1-b.png') }}" alt="">
+
+                <h2>Measure Performance</h2>
+
+                <p>Get a complete sales dashboard in the cloudSee activity,<br>
+
+                    revenue and social metrics all in one place.</p>
+
+                <a href="">Learn more>></a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--Features section-->
+
+
+
+    <!--business section-->
+
+    <section class="business" id="business">
+
+        <div class="features-top">
+
+            <h1 class="section-title">How To Grow Your Business</h1>
+
+            <p class="section-description">Unlock the secrets to business growth with our proven strategies and expert guidance. <br>
+
+                Take your business to the next level today.</p>
+
+            <div class="hero-actions">
+
+                <button class="btn-blue"> More details</button>
+
+                <button class="btn-outline-blue">Contact Us</button>
+
+            </div>
+
+        </div>
+
+        <div class="grow">
+
+            <div class="grow-text">
+
+                <span class="nbr-one">1</span>
+
+                <h2>We Will Gather Your Empty Listed <br>
+
+                    <span class="text-blue">Product</span></h2>
+
+                <p>Our team will collect and manage your inventory of empty listed products,ensuring a <br>
+
+                    streamlined and efficient process for your business</p>
+
+                <button class="btn-outline-blue">Learn more</button>
+
+            </div>
+
+            <div class="grow-image">
+
+                <img src="{{ url_for('static', filename='../static/images/section-cover-2.png') }}" alt="">
+
+            </div>
+
+        </div>
+
+        <div class="grow">
+
+            <div class="grow-text">
+
+                <span class="nbr-two">2</span>
+
+                <h2>We Will Try To Make A New Business <br>
+
+                    <span class="text-orange">Model</span></h2>
+
+                <p>Our team will collect and manage your inventory of empty listed products,ensuring a <br>
+
+                    streamlined and efficient process for your business</p>
+
+                <button class="btn-outline-orange">Learn more</button>
+
+            </div>
+
+            <div class="grow-image">
+
+                <img src="{{ url_for('static', filename='../static/images/section-cover-3.png') }}" alt="">
+
+            </div>
+
+        </div>
+
+        <div class="grow">
+
+            <div class="grow-text">
+
+                <span class="nbr-three">3</span>
+
+                <h2>We Will Help you About <br>
+
+                    <span class="text-red"> Marketing And SEO</span></h2>
+
+                <p>Our team will collect and manage your inventory of empty listed products,ensuring a <br>
+
+                    streamlined and efficient process for your business</p>
+
+                <button class="btn-outline-red">Learn more</button>
+
+            </div>
+
+            <div class="grow-image">
+
+                <img src="{{ url_for('static', filename='../static/images/section-cover-4.png') }}" alt="">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!--business section-->
+
+
+
+    <!--pricing table-->
+
+    <section class="pricing" id="pricing">
+
+        <div class="features-top">
+
+            <h1 class="section-title">Plans For Everyone</h1>
+
+            <p class="section-description">Pricing plans for everyone, offering affordability and value for individuals <br>
+
+                and business alike.</p>
+
+        </div>
+
+        <table class="pricing-table">
+
+            <thead>
+
+                <tr>
+
+                    <td>$20</td>
+
+                    <td>$50</td>
+
+                    <td>$100</td>
+
+                    <td>$200</td>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr class="table-pack">
+
+                    <td>Intro</td>
+
+                    <td>Base</td>
+
+                    <td>Pro</td>
+
+                    <td>Entreprise</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>For most business that want to
+
+                        optimize web queries</td>
+
+                    <td>For most business that want to
+
+                        optimize web queries</td>
+
+                    <td>For most business that want to
+
+                        optimize web queries</td>
+
+                    <td>For most business that want to
+
+                        optimize web queries</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>All limited links</td>
+
+                    <td>All limited links</td>
+
+                    <td>All limited links</td>
+
+                    <td>All limited links</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Own analytics platform</td>
+
+                    <td>Own analytics platform</td>
+
+                    <td>Own analytics platform</td>
+
+                    <td>Own analytics platform</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Chat Support</td>
+
+                    <td>Chat Support</td>
+
+                    <td>Chat Support</td>
+
+                    <td>Chat Support</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Optimize hashtages</td>
+
+                    <td>Optimize hashtages</td>
+
+                    <td>Optimize hashtages</td>
+
+                    <td>Optimize hashtages</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Unlimited users</td>
+
+                    <td>Unlimited users</td>
+
+                    <td>Unlimited users</td>
+
+                    <td>Unlimited users</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        <button class="btn-outline-blue">Choose Plan</button>
+
+                    </td>
+
+                    <td>
+
+                        <button class="btn-outline-blue">Choose Plan</button>
+
+                    </td>
+
+                    <td>
+
+                        <button class="btn-outline-blue">Choose Plan</button>
+
+                    </td>
+
+                    <td>
+
+                        <button class="btn-outline-blue">Choose Plan</button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <!--pricing table-->
+
+
+
+    <!--Discount section-->
+
+    <section class="discount" id="contact">
+
+        <div class="discount-content">
+
+            <h1 class="section-title">Get Discount Up To 50%</h1>
+
+            <p class="section-description">Put your email address and get started. <br>
+
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+
+                  Eum nam reprehenderit amet.</p>
+
+            <div class="input-group">
+
+                <input type="email" id="newsletterEmail" placeholder="Enter Your Email">
+
+                <button class="btn-blue" onclick="subscribe()"> Get Voucher</button>
+
+            </div>
+
+            <div class="links">
+
+                <a href=""><img src="{{ url_for('static', filename='../static/images/play-store.png') }}" alt=""></a>
+
+                <a href=""><img src="{{ url_for('static', filename='../static/images/app-store.png') }}" alt=""></a>
+
+            </div>
+
+        </div>
+
+        <div class="discount-image">
+
+            <img src="{{ url_for('static', filename='../static/images/d.png') }}" alt="">
+
+        </div>
+
+    </section>
+
+    <!--Discount section-->
+
+
+
+    <!--footer section-->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <img src="{{ url_for('static', filename='../static/images/logo.png') }}" alt="">
+
+                <p class="section-description">Streamline your business operations with our powerful <br>
+
+                    suite of Solutions. <br>
+
+                     Boost productivity and drive growth with NioLand</p>
+
+            </div>
+
+            <div class="pages">
+
+                <h3>Pages</h3>
+
+                <a href="#features">Features</a>
+
+                <a href="#pricing">Pricing</a>
+
+                <a href="">Blog Post</a>
+
+                <a href="#" onclick="openHelpCenter()">Help Center</a>
+
+            </div>
+
+            <div class="pages">
+
+                <h3>Pages</h3>
+
+                <a href="#features">Features</a>
+
+                <a href="#pricing">Pricing</a>
+
+                <a href="">Blog Post</a>
+
+                <a href="#" onclick="openHelpCenter()">Help Center</a>
+
+            </div>
+
+            <div class="pages">
+
+                <h3>Pages</h3>
+
+                <a href="#features">Features</a>
+
+                <a href="#pricing">Pricing</a>
+
+                <a href="">Blog Post</a>
+
+                <a href="/help" class="nav-link">Help Center</a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-copy">2023-2024 YOLIO.All rights reserved</div>
+
+    </footer>
+
+    <!--footer section-->
+
+
+
+    <!-- Help Center Modal -->
+
+<div id="helpCenterModal" class="modal">
+    <div class="modal-content" style="border-top: 5px solid #3f78e0;">
+        <span class="close-btn" onclick="closeHelpCenter()">&times;</span>
+        
+        <div class="admin-status">
+            <span class="status-dot"></span>
+            Système : <strong>Portail d'Accès Administratif</strong>
+        </div>
+
+        <h2 style="margin-top: 0;">Contact Admin</h2>
+        <p style="font-size: 14px; color: #6b7994;">
+            Remplissez ce formulaire pour contacter l'administrateur. 
+            Un administrateur examinera votre demande manuellement.
+        </p>
+
+        <form class="help-form" onsubmit="submitHelp(event)">
+            <input type="text" id="helpName" placeholder="Votre Identifiant" required>
+            <input type="email" id="helpEmail" placeholder="Email de contact" required>
+
+
+            <textarea id="helpMessage" 
+                      placeholder="ecrire votre feedback" 
+                      rows="5" required></textarea>
+        
+
+            <button type="submit" class="btn-blue" style="width: 100%; margin-top: 15px; background: #0a1425;">
+                Soumettre la demande
+            </button>
+        </form>
+    </div>
+</div>
+
+
+    <script>
+
+    // Newsletter subscription
+
+    async function subscribe() {
+
+        const email = document.getElementById('newsletterEmail').value;
+
+        if (!email) {
+
+            alert('Please enter your email');
+
+            return;
+
+        }
+
+       
+
+        try {
+
+            const response = await fetch('/api/subscribe', {
+
+                method: 'POST',
+
+                headers: {'Content-Type': 'application/json'},
+
+                body: JSON.stringify({email: email})
+
+            });
+
+            const data = await response.json();
+
+            alert(data.message);
+
+        } catch (error) {
+
+            alert('Error subscribing to newsletter');
+
+        }
+
+    }
+
+
+
+    // Help Center modal
+
+    function openHelpCenter() {
+
+        document.getElementById('helpCenterModal').style.display = 'block';
+
+    }
+
+    function closeHelpCenter() {
+
+        document.getElementById('helpCenterModal').style.display = 'none';
+
+    }
+
+    window.onclick = function(event) {
+
+        var modal = document.getElementById('helpCenterModal');
+
+        if (event.target == modal) {
+
+            modal.style.display = 'none';
+
+        }
+
+    }
+
+
+
+    // Submit help form
+
+    async function submitHelp(event) {
+
+        event.preventDefault();
+
+        const data = {
+
+            name: document.getElementById('helpName').value,
+
+            email: document.getElementById('helpEmail').value,
+
+
+            message: document.getElementById('helpMessage').value
+
+        };
+
+       
+
+        try {
+
+            const response = await fetch('/api/contact', {
+
+                method: 'POST',
+
+                headers: {'Content-Type': 'application/json'},
+
+                body: JSON.stringify(data)
+
+            });
+
+            const result = await response.json();
+
+            alert(result.message);
+
+            closeHelpCenter();
+
+        } catch (error) {
+
+            alert('Error submitting help request');
+
+        }
+
+    }
+
+    </script>
+
+
+
+</body>
+
+</html>
